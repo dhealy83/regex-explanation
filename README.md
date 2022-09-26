@@ -68,19 +68,45 @@ For example, in the snippet we are breaking down, `/^([a-z0-9_\.-]+)@([\da-z\.-]
 
 # Quantifiers
 
+Quantifiers set the limits of the string that your regex matches. It can also set limits to parts of the string. They will include the minimum and maximum amount if numbers the regex is looking for.
+
+Quantifiers are inherently "greedy," meaning they match as many occurrences of characters that the regex is looking for. They are included in the following:
+
+- [\*](#lets-you-match-0-or-other-occurrences-of-the-element-that-come-after-it-an-example-keysa-z0-9-will-match-keys0-and-will-match-additional-alphanumeric-values-will-also-match-keys0-keys000-keyszzz-ans-keys) $~~$ Matches the pattern 0 or more times.
+
+- [+](#this-does-the-same-thing-as--but-does-not-match-keys) $~$ Matches the pattern 1 or more times.
+
+- [?](#lets-you-match-with-0-or-1-occurrences-of-the-element-it-follows-an-example-keysa-a0-9-matched-keys-followed-by-0-or-1-alphanumeric-values-this-allows-the-matching-of-keys-keys0-keysa-and-keyszz) $~~$ Matches the pattern 0 or no times.
+
+- { } $~$ Curly brackets can provide can provide three different ways to set limits for a match:
+
+  - {n} $~~~~$ Matches the pattern exactly n number of times.
+  - {n,} $~~~$ Matches the pattern at leas n number of times.
+  - {n, x} $~$ Matches the pattern from a minimum of n to a maximum of x number of times.
+
+All of the quantifiers can be made lazy by adding the ? symbol after it and will match the fewest number of occurrences possible.
+
+For example, in the snippet of code we are breaking down, `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, you can see at the end {2,6}. This indicates that the suffix of the email address should only be 2-6 characters long.
+
 # Grouping Constructs
+
+- [( )](#lets-you-group-expressions-an-example-keys0-9socks0-9-matches-keys99a-or-socks99b-but-not-keys-or-socks) $~$ The primary way you group a section of a regex is by using parentheses. Each section within parentheses is known as a subexpression.
+
+A grouping constructors have two primary categories: capturing ad non-capturing. A grouping constructor can be made non-capturing simply by adding ?: at the beginning of an expression inside of the parentheses.
+
+For example, in the snippet of code we are breaking down, `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, you can see there are two sets of ( ) in the regex. The first is going to match the prefix of the email address and the sends set is going to match the suffix of the email address.
 
 # Character Classes
 
 A character class in a regex defines a set of characters. All of the character classes can be change to preform the inverse simply by capitalizing the letter. An example: \D will will match any non-digit character.
 
-- . $~~$ Matches any character except the newline character (\n).
+- . $~~~$ or Any Character: Matches any character except the newline character (\n).
 
-- \d or Digit: $~~$ Will match all numbers it is equivalent to the expression [0-9].
+- \d $~$ or Digit: $~~$ Will match all numbers it is equivalent to the expression [0-9].
 
-- \w or Word: $~~$ Will match all letters, numbers, and underscore. It is equivalent to [A-Za-z0-9-_].
+- \w $~$ or Word: $~~$ Will match all letters, numbers, and underscore. It is equivalent to [A-Za-z0-9-_].
 
-- \s or Space: $~~$ Will match any whitespace character, including tabs and line breaks.
+- \s $~~$ or Space: $~~$ Will match any whitespace character, including tabs and line breaks.
 
 # The OR Operator
 
@@ -92,17 +118,17 @@ There is no example in the snippet `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,
 
 I start by explaining that a regex is a literal and must be bound by backslashes. The exception to this rule is know as a flags and they defines additional functions or limits for the regex.
 
-- g or Global: Makes the expression search for all occurrences.
+- g $~$ or Global: Makes the expression search for all occurrences.
 
-- i or Ignore Casing: Makes the expression search case-insensitively.
+- i $~~$ or Ignore Casing: Makes the expression search case-insensitively.
 
-- s or Dot All: Makes the wild character . match newlines as well.
+- s $~~$ or Dot All: Makes the wild character . match newlines as well.
 
-- m or Multiline: Makes the boundary character ^ and $ match the beginning and end of every line instead of the beginning and end of the whole string.
+- m $~$ or Multiline: Makes the boundary character ^ and $ match the beginning and end of every line instead of the beginning and end of the whole string.
 
-- y or Sticky: Makes the expression start its search from the index indicated in its "lastIndexed" property.
+- y $~~$ or Sticky: Makes the expression start its search from the index indicated in its "lastIndexed" property.
 
-- u or Unicode: Make the expression assume individual characters as code points, not code units, and thus match 32-bit characters as well.
+- u $~~$ or Unicode: Make the expression assume individual characters as code points, not code units, and thus match 32-bit characters as well.
 
 # Character Escapes
 
