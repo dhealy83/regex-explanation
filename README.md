@@ -1,6 +1,6 @@
 # Regex Explanation
 
-TODO:Introductory paragraph (replace this with your text)
+A reference on regex and how to use them.
 
 # Summary
 
@@ -144,4 +144,4 @@ For example, the snippet of code we are breaking down, `/^([a-z0-9_\.-]+)@([\da-
 
 # Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+David Healy is in the midst of a career change and looking for work. He will be done with his DU Bootcamp course, focused on full stack development by the end of October, 2022. (https://github.com/dhealy83)
